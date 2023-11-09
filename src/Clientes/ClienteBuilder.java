@@ -176,6 +176,11 @@ public class ClienteBuilder {
                 " com idade de " + getIdadeAtual() + " e e-mail:" + getEmail() +
                 ", endereço " + getEndereco() + " e telefone " + getTelefone();
     }
+    public String toStringIdentificacao(){
+        return "Os dados pessoais sao: " + tratamentoGenero() + " " + getNomeCompleto() + " , com CPF: " +
+                getCpf() + " data de nascimento " + getDataDeNascimento() +
+                " com idade de " + getIdadeAtual();
+    }
     public String toStringContatos() {
         return "Os dados de contato sao: e-mail:" + getEmail() +
                 ", endereço " + getEndereco() + " e telefone " + getTelefone();

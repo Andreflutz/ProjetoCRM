@@ -19,6 +19,9 @@ public class Main {
                 ("Av. Rondonia","(76) 1234-1234","julianafelz@gmail.com");
         System.out.println(clienteFCompleto.toString());
 
+        ClienteBuilder clienteMIdentificacao = new ClienteBuilder().comIdentificacao("Felipe", "almeida","Andrade", "23.456.789-90", 'M',"23/08/1997");
+        System.out.println(clienteMIdentificacao.toString());
+
         ClienteBuilder clienteMContatos = new ClienteBuilder().comContatos("Av. Carlos de carvalho",
                 "(99) 7835-8125","felipeALA@hotmail.com");
         System.out.println(clienteMContatos.toStringContatos());
