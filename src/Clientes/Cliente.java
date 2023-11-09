@@ -1,3 +1,5 @@
+package Clientes;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -15,11 +17,8 @@ public class Cliente {
     private String endereco;
     private String telefone;
 
-
-    Scanner scanner = new Scanner(System.in);
-
     public Cliente(String primeiroNome, String nomeDoMeio, String sobrenome, String cpf, String email,
-                   char genero, String dataDeNascimento) {
+                   char genero, String dataDeNascimento,String endereco, String telefone) {
         this.primeiroNome = primeiroNome;
         this.nomeDoMeio = nomeDoMeio;
         this.sobrenome = sobrenome;
@@ -32,9 +31,9 @@ public class Cliente {
         this.endereco = endereco;
         this.telefone = telefone;
     }
-
     private int definirIdadeAtual() {
-
+        int anoAtual = recuperaAnoAtual();
+        int anoNascimento = recuperarAnoNascimento();
         return recuperaAnoAtual() - recuperarAnoNascimento();
     }
 
@@ -47,14 +46,14 @@ public class Cliente {
             throw new RuntimeException(e);
         }
         calendario.setTime(dataNascimentoCliente);
-        return calendario.YEAR;
+        return calendario.get(Calendar.YEAR);
     }
 
     private int recuperaAnoAtual() {
         Calendar calendario = Calendar.getInstance();
         Date diaAtual = new Date();
         calendario.setTime(diaAtual);
-        return calendario.YEAR;
+        return calendario.get(Calendar.YEAR);
     }
 
     private SimpleDateFormat definirFormatoDaData(String formatoDaData) {

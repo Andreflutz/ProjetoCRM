@@ -1,8 +1,11 @@
+package Clientes;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ClienteBuilder {
+    Scanner scanner = new Scanner(System.in);
     private String nomeCompleto;
     private String primeiroNome;
     private String sobrenome;
@@ -15,11 +18,8 @@ public class ClienteBuilder {
     private String endereco;
     private String telefone;
 
-
-    Scanner scanner = new Scanner(System.in);
-
-    public ClienteBuilder comIdentificacao(String primeiroNome, String nomeDoMeio, String sobrenome, String cpf, String email,
-                   char genero, String dataDeNascimento) {
+    public ClienteBuilder comIdentificacao(String primeiroNome, String nomeDoMeio, String sobrenome, String cpf,
+                                           char genero, String dataDeNascimento) {
         this.primeiroNome = primeiroNome;
         this.nomeDoMeio = nomeDoMeio;
         this.sobrenome = sobrenome;
@@ -29,8 +29,13 @@ public class ClienteBuilder {
         this.genero = genero;
         this.dataDeNascimento = dataDeNascimento;
         this.idadeAtual = definirIdadeAtual();
+        return this;
+    }
+
+    public ClienteBuilder comContatos(String endereco, String telefone, String email) {
         this.endereco = endereco;
         this.telefone = telefone;
+        this.email = email;
         return this;
     }
 
@@ -48,14 +53,14 @@ public class ClienteBuilder {
             throw new RuntimeException(e);
         }
         calendario.setTime(dataNascimentoCliente);
-        return calendario.YEAR;
+        return calendario.get(Calendar.YEAR);
     }
 
     private int recuperaAnoAtual() {
         Calendar calendario = Calendar.getInstance();
         Date diaAtual = new Date();
         calendario.setTime(diaAtual);
-        return calendario.YEAR;
+        return calendario.get(Calendar.YEAR);
     }
 
     private SimpleDateFormat definirFormatoDaData(String formatoDaData) {
@@ -169,6 +174,10 @@ public class ClienteBuilder {
         return tratamentoGenero() + " " + getNomeCompleto() + " , com CPF: " +
                 getCpf() + " data de nascimento " + getDataDeNascimento() +
                 " com idade de " + getIdadeAtual() + " e e-mail:" + getEmail() +
+                ", endereço " + getEndereco() + " e telefone " + getTelefone();
+    }
+    public String toStringContatos() {
+        return "Os dados de contato sao: e-mail:" + getEmail() +
                 ", endereço " + getEndereco() + " e telefone " + getTelefone();
     }
 }
